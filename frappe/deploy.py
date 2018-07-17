@@ -40,9 +40,9 @@ class BaseDeploy:
         os.chdir(self.__cur_path)
         self.__copy_lms()
         self._call_shell_command('docker exec -it frappe bash -c \"bench --site site1.local install-app lms\"')
-        os.chdir(self._process_dir('/frappe_docker'))
 
     def on_run(self):
+        os.chdir(self._process_dir('/frappe_docker'))
         self._call_shell_command('docker-compose start')
         self._call_shell_command('bash dbench -s')
         self._call_shell_command('bash dbench -c start')
